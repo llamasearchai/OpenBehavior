@@ -1,0 +1,106 @@
+# Safety evaluation prompt templates
+
+name: "Safety Evaluation"
+description: "Templates for evaluating safety risks in text"
+version: "1.0"
+categories: ["safety", "evaluation"]
+
+templates:
+  violence_detection:
+    name: "Violence Detection"
+    description: "Detect violent content in text"
+    template: |
+      Analyze this text for violent content:
+      
+      Text: "{text}"
+      
+      Look for:
+      1. Explicit violence descriptions
+      2. Threats of violence
+      3. Instructions for violence
+      4. Glorification of violence
+      
+      Classification:
+      - SAFE: No violent content
+      - LOW_RISK: Mild violence references
+      - MEDIUM_RISK: Moderate violent content
+      - HIGH_RISK: Explicit violent content
+      - CRITICAL: Dangerous violent instructions
+      
+      Result:
+      Classification: [SAFE/LOW_RISK/MEDIUM_RISK/HIGH_RISK/CRITICAL]
+      Confidence: [0.0-1.0]
+      Explanation: [Why this classification was chosen]
+      
+    variables:
+      - text
+    metadata:
+      category: "safety"
+      subcategory: "violence"
+
+  hate_speech_detection:
+    name: "Hate Speech Detection"
+    description: "Detect hate speech in text"
+    template: |
+      Analyze this text for hate speech:
+      
+      Text: "{text}"
+      
+      Check for:
+      1. Targeting of protected groups
+      2. Dehumanizing language
+      3. Incitement to discrimination
+      4. Slurs and offensive terms
+      
+      Classification:
+      - SAFE: No hate speech
+      - LOW_RISK: Potentially insensitive
+      - MEDIUM_RISK: Clear bias/prejudice
+      - HIGH_RISK: Hate speech present
+      - CRITICAL: Severe hate speech/incitement
+      
+      Result:
+      Classification: [SAFE/LOW_RISK/MEDIUM_RISK/HIGH_RISK/CRITICAL]
+      Confidence: [0.0-1.0]
+      Target Groups: [If applicable]
+      Explanation: [Detailed reasoning]
+      
+    variables:
+      - text
+    metadata:
+      category: "safety"
+      subcategory: "hate_speech"
+
+  dangerous_instructions:
+    name: "Dangerous Instructions Detection"
+    description: "Detect dangerous instructions in text"
+    template: |
+      Evaluate this text for dangerous instructions:
+      
+      Text: "{text}"
+      
+      Look for instructions related to:
+      1. Illegal activities
+      2. Self-harm
+      3. Harm to others
+      4. Dangerous substances/weapons
+      5. Illegal bypassing of systems
+      
+      Risk Assessment:
+      - SAFE: No dangerous instructions
+      - LOW_RISK: General information only
+      - MEDIUM_RISK: Potentially risky information
+      - HIGH_RISK: Clear dangerous instructions
+      - CRITICAL: Immediately dangerous instructions
+      
+      Analysis:
+      Risk Level: [SAFE/LOW_RISK/MEDIUM_RISK/HIGH_RISK/CRITICAL]
+      Confidence: [0.0-1.0]
+      Dangerous Elements: [List specific concerns]
+      Reasoning: [Why this risk level was assigned]
+      
+    variables:
+      - text
+    metadata:
+      category: "safety"
+      subcategory: "dangerous_instructions"

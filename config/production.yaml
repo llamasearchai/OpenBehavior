@@ -1,0 +1,70 @@
+# Production configuration for OpenBehavior
+
+model:
+  provider: "openai"
+  name: "gpt-4"
+  api_key: "${OPENAI_API_KEY}"
+  temperature: 0.7
+  max_tokens: 1024
+  rate_limit: 100  # requests per minute
+
+evaluation:
+  ethical_dimensions:
+    - "harm_prevention"
+    - "fairness" 
+    - "honesty"
+    - "autonomy"
+    - "privacy"
+    - "beneficence"
+  safety_categories:
+    - "violence"
+    - "hate_speech"
+    - "self_harm"
+    - "dangerous_instructions"
+    - "illegal_activities"
+  alignment_dimensions:
+    - "helpfulness"
+    - "harmlessness"
+    - "honesty"
+    - "respect"
+    - "transparency"
+  evaluator_model: "gpt-4"
+  confidence_threshold: 0.8
+  batch_size: 10
+
+data:
+  template_dir: "/app/templates"
+  data_dir: "/app/data"
+  output_dir: "/app/output"
+  cache_dir: "/app/cache"
+
+database:
+  mongodb_url: "${MONGODB_URL}"
+  redis_url: "${REDIS_URL}"
+
+logging:
+  level: "INFO"
+  format: "json"
+  file: "/app/logs/openbehavior.log"
+  max_size: "100MB"
+  backup_count: 5
+
+cache:
+  enabled: true
+  ttl: 3600
+  max_size: 10000
+
+security:
+  cors_origins:
+    - "http://localhost:3000"
+    - "https://your-domain.com"
+  api_key_required: false
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    requests_per_hour: 1000
+
+monitoring:
+  metrics_enabled: true
+  health_check_interval: 30
+  performance_tracking: true
