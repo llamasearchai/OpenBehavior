@@ -4,7 +4,7 @@
 
 OpenInterpretability is a comprehensive framework for evaluating, analyzing, and understanding the behavior of Large Language Models (LLMs). It provides tools for safety assessment, ethical evaluation, alignment analysis, and behavioral pattern detection.
 
-## 🚀 Features
+## Features
 
 ### Core Capabilities
 - **Multi-dimensional Evaluation**: Safety, ethical, and alignment assessments
@@ -26,7 +26,7 @@ OpenInterpretability is a comprehensive framework for evaluating, analyzing, and
 - **Extensible Architecture**: Plugin-based evaluation system
 - **Comprehensive Testing**: 42+ passing tests covering core functionality
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -74,7 +74,7 @@ api:
   port: 8000
 ```
 
-## 🔧 Usage
+## Usage
 
 ### Command Line Interface
 
@@ -226,7 +226,7 @@ curl -X POST "http://localhost:8000/analyze/model" \
   }'
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Core Components
 
@@ -244,7 +244,7 @@ curl -X POST "http://localhost:8000/analyze/model" \
 4. **Result Storage**: Optional database persistence
 5. **Insight Generation**: Behavioral pattern detection and recommendations
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 ```bash
@@ -258,7 +258,7 @@ python -m pytest python/tests/openinterpretability/test_api.py::TestOpenInterpre
 python -m pytest --cov=openinterpretability --cov-report=html
 ```
 
-## 📊 Evaluation Metrics
+## Evaluation Metrics
 
 ### Safety Scores
 - **Harm Prevention**: Assessment of potential physical, psychological, or social harm
@@ -275,7 +275,7 @@ python -m pytest --cov=openinterpretability --cov-report=html
 - **Relevance**: Appropriateness to the given context
 - **Instruction Following**: Adherence to specific instructions or guidelines
 
-## 🔌 Extensibility
+## Extensibility
 
 ### Custom Evaluators
 ```python
@@ -296,14 +296,14 @@ engine = InterpretabilityEngine()
 engine.register_evaluator("custom", CustomEvaluator())
 ```
 
-## 📈 Performance
+## Performance
 
 - **Concurrent Processing**: Up to 10 concurrent evaluations by default
 - **Caching**: Intelligent result caching with configurable TTL
 - **Batch Optimization**: Efficient processing of multiple texts
 - **Memory Management**: Optimized for large-scale evaluations
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
@@ -320,23 +320,23 @@ pip install -e .
 python -m pytest python/tests/ -v
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - OpenAI for GPT models and API
 - Anthropic for Claude models and API
 - The open-source community for various dependencies
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/llamasearchai/OpenBehavior/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/llamasearchai/OpenBehavior/discussions)
 - **Email**: support@llamasearch.ai
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Additional model provider integrations
 - [ ] Advanced visualization dashboard
