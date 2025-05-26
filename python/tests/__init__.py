@@ -1,1 +1,1 @@
-"""Tests for OpenBehavior and OpenInterpretability packages.""" 
+"""Tests for OpenBehavior packages.""" 

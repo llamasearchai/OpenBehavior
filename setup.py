@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Setup script for OpenInterpretability.
+Setup script for OpenBehavior.
 
-Advanced LLM Behavior Analysis and Interpretability Platform
+Advanced LLM Behavior Analysis and Evaluation Platform
 """
 
 from setuptools import setup, find_packages
@@ -18,11 +18,11 @@ with open("requirements.txt", "r") as f:
     requirements = [line.strip() for line in f if line.strip() and not line.startswith("#")]
 
 setup(
-    name="openinterpretability",
+    name="openbehavior",
     version="1.0.0",
     author="Nik Jois",
     author_email="nikjois@llamasearch.ai",
-    description="Advanced LLM Behavior Analysis and Interpretability Platform",
+    description="Advanced LLM Behavior Analysis and Evaluation Platform",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/llamasearchai/OpenBehavior",
@@ -74,13 +74,13 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "openinterpretability=openinterpretability.cli.main:cli",
-            "oi=openinterpretability.cli.main:cli",
+            "openbehavior=openbehavior.cli.main:cli",
+            "ob=openbehavior.cli.main:cli",
         ],
     },
     include_package_data=True,
     package_data={
-        "openinterpretability": [
+        "openbehavior": [
             "templates/*.yaml",
             "templates/*.json",
             "prompts/*.txt",
@@ -90,12 +90,11 @@ setup(
     keywords=[
         "ai",
         "llm",
-        "interpretability",
+        "behavior-analysis",
         "safety",
         "ethics",
         "alignment",
         "evaluation",
-        "behavior-analysis",
         "machine-learning",
         "natural-language-processing",
     ],

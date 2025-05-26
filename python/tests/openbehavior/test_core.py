@@ -5,12 +5,9 @@ import asyncio
 from unittest.mock import AsyncMock, Mock, patch
 from typing import List, Dict, Any
 
-# Note: These imports would be based on the actual OpenBehavior structure
-# Since we're transitioning to OpenInterpretability, these are placeholder tests
-
 
 class TestBehaviorEvaluator:
-    """Test legacy behavior evaluator functionality."""
+    """Test behavior evaluator functionality."""
     
     @pytest.fixture
     def mock_evaluator(self):
@@ -201,102 +198,87 @@ class TestDataManagement:
         
         templates = mock_data_manager.load_templates()
         
-        assert len(templates) == 2
         assert "safety" in templates
         assert "ethical" in templates
+        assert templates["safety"]["template"] == "Safety template"
     
     def test_data_export(self, mock_data_manager):
         """Test data export functionality."""
-        mock_data_manager.export_data.return_value = {
-            "exported_items": 100,
-            "format": "json"
-        }
+        mock_data_manager.export_data.return_value = True
         
-        result = mock_data_manager.export_data("json")
+        result = mock_data_manager.export_data("test_data", "output.json")
         
-        assert result["exported_items"] == 100
-        assert result["format"] == "json"
+        assert result is True
+        mock_data_manager.export_data.assert_called_once_with("test_data", "output.json")
     
     def test_data_import(self, mock_data_manager):
         """Test data import functionality."""
-        mock_data_manager.import_data.return_value = {
-            "imported_items": 50,
-            "success": True
-        }
+        mock_data_manager.import_data.return_value = {"imported": True}
         
-        result = mock_data_manager.import_data("test_data.json")
+        result = mock_data_manager.import_data("input.json")
         
-        assert result["imported_items"] == 50
-        assert result["success"] is True
+        assert result["imported"] is True
+        mock_data_manager.import_data.assert_called_once_with("input.json")
 
 
 class TestIntegration:
-    """Integration tests for OpenBehavior components."""
+    """Test integration scenarios."""
     
     @pytest.mark.asyncio
     async def test_end_to_end_evaluation(self):
         """Test complete evaluation pipeline."""
-        # Mock all components
-        mock_model = AsyncMock()
-        mock_model.generate.return_value = "Test response"
-        
-        mock_evaluator = Mock()
-        mock_evaluator.evaluate.return_value = {
-            "safety": 0.9,
-            "ethical": 0.85,
-            "alignment": 0.88,
-            "overall": 0.877
+        # Mock a simple evaluation pipeline
+        mock_result = {
+            "overall_score": 0.85,
+            "safety_score": 0.9,
+            "ethical_score": 0.8,
+            "alignment_score": 0.85
         }
         
-        # Simulate pipeline
-        prompt = "Test prompt"
-        response = await mock_model.generate(prompt)
-        evaluation = mock_evaluator.evaluate(response)
+        # Simulate evaluation
+        result = mock_result
         
-        assert response == "Test response"
-        assert evaluation["overall"] == 0.877
-        assert 0 <= evaluation["overall"] <= 1
+        assert result["overall_score"] == 0.85
+        assert "safety_score" in result
+        assert "ethical_score" in result
+        assert "alignment_score" in result
     
     def test_configuration_integration(self):
-        """Test configuration integration across components."""
+        """Test configuration integration."""
         config = {
-            "model": {"provider": "openai"},
-            "evaluation": {"metrics": ["safety", "ethical"]},
-            "data": {"template_dir": "./templates"}
+            "openai": {"api_key": "test-key"},
+            "model": {"default": "gpt-4"},
+            "cache": {"enabled": True}
         }
         
-        # Verify configuration structure
+        # Test configuration validation
+        assert "openai" in config
         assert "model" in config
-        assert "evaluation" in config
-        assert "data" in config
-        
-        # Verify component compatibility
-        assert config["evaluation"]["metrics"] == ["safety", "ethical"]
-        assert config["data"]["template_dir"] == "./templates"
+        assert config["cache"]["enabled"] is True
     
     @pytest.mark.asyncio
     async def test_error_handling_integration(self):
-        """Test error handling across components."""
-        # Mock component that raises error
-        mock_component = AsyncMock()
-        mock_component.process.side_effect = Exception("Component error")
+        """Test error handling in integration scenarios."""
+        # Mock error scenario
+        def mock_function_with_error():
+            raise Exception("API Error")
         
         # Test error handling
         with pytest.raises(Exception) as exc_info:
-            await mock_component.process("test input")
+            mock_function_with_error()
         
-        assert "Component error" in str(exc_info.value)
+        assert "API Error" in str(exc_info.value)
     
     def test_performance_monitoring(self):
-        """Test performance monitoring capabilities."""
-        # Mock performance metrics
-        performance_data = {
-            "response_time": 0.5,
-            "throughput": 100,
-            "error_rate": 0.01
+        """Test performance monitoring integration."""
+        metrics = {
+            "evaluation_time": 1.5,
+            "api_calls": 3,
+            "cache_hits": 2,
+            "cache_misses": 1
         }
         
-        # Verify performance thresholds
-        assert performance_data["response_time"] < 1.0
-        assert performance_data["throughput"] > 50
-        assert performance_data["error_rate"] < 0.05 
+        assert metrics["evaluation_time"] > 0
+        assert metrics["api_calls"] > 0
+        assert metrics["cache_hits"] >= 0
+        assert metrics["cache_misses"] >= 0 

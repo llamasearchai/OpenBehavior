@@ -7,8 +7,8 @@ include MANIFEST.in
 
 # Include template files
 recursive-include templates *.yaml *.json *.txt
-recursive-include python/openinterpretability/prompts *.yaml *.txt
-recursive-include python/openinterpretability/templates *.yaml *.json
+recursive-include python/openbehavior/prompts *.yaml *.txt
+recursive-include python/openbehavior/templates *.yaml *.json
 
 # Include configuration files
 include config/*.yaml

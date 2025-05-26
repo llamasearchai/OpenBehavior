@@ -1,4 +1,4 @@
-# OpenInterpretability - Advanced LLM Behavior Analysis and Interpretability Platform
+# OpenBehavior - Advanced LLM Behavior Analysis and Evaluation Platform
 # Author: Nik Jois <nikjois@llamasearch.ai>
 
 # Core dependencies
